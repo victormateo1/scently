@@ -1,0 +1,186 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Scently — Aurora UI design system.
+ * Palette: Cotton Rose #dbb3b1, Rosy Taupe #c89fa3, Dusty Mauve #a67f8e,
+ * Mauve Bark #6c534e, Coffee Bean #2c1a1d (+ off-white).
+ */
+
+@theme inline {
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-rose: var(--rose);
+  --color-taupe: var(--taupe);
+  --color-mauve: var(--mauve);
+  --color-bark: var(--bark);
+  --color-coffee: var(--coffee);
+  --color-ivory: var(--ivory);
+  --color-level-full: var(--level-full);
+  --color-level-mid: var(--level-mid);
+  --color-level-low: var(--level-low);
+  --color-level-empty: var(--level-empty);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 1rem;
+  /* palette */
+  --rose: oklch(0.8 0.05 18);      /* #dbb3b1 */
+  --taupe: oklch(0.74 0.055 8);    /* #c89fa3 */
+  --mauve: oklch(0.63 0.06 355);   /* #a67f8e */
+  --bark: oklch(0.45 0.035 35);    /* #6c534e */
+  --coffee: oklch(0.23 0.03 10);   /* #2c1a1d */
+  --ivory: oklch(0.975 0.008 30);
+
+  --background: oklch(0.965 0.012 25);
+  --foreground: var(--coffee);
+  --card: oklch(0.99 0.006 30 / 0.72);
+  --card-foreground: var(--coffee);
+  --popover: oklch(0.985 0.008 30);
+  --popover-foreground: var(--coffee);
+  --primary: var(--coffee);
+  --primary-foreground: var(--ivory);
+  --secondary: oklch(0.92 0.025 20);
+  --secondary-foreground: var(--coffee);
+  --muted: oklch(0.93 0.018 20);
+  --muted-foreground: var(--bark);
+  --accent: oklch(0.89 0.035 10);
+  --accent-foreground: var(--coffee);
+  --destructive: oklch(0.5 0.13 22);
+  --destructive-foreground: var(--ivory);
+  --border: oklch(0.45 0.035 35 / 0.14);
+  --input: oklch(0.45 0.035 35 / 0.2);
+  --ring: var(--mauve);
+  --chart-1: var(--coffee);
+  --chart-2: var(--mauve);
+  --chart-3: var(--taupe);
+  --chart-4: var(--bark);
+  --chart-5: var(--rose);
+
+  --level-full: var(--mauve);
+  --level-mid: var(--taupe);
+  --level-low: var(--bark);
+  --level-empty: oklch(0.45 0.035 35 / 0.35);
+
+  --gradient-aurora: radial-gradient(60% 50% at 15% 10%, oklch(0.8 0.05 18 / 0.75), transparent 70%),
+    radial-gradient(50% 45% at 85% 15%, oklch(0.63 0.06 355 / 0.45), transparent 70%),
+    radial-gradient(60% 50% at 70% 90%, oklch(0.74 0.055 8 / 0.5), transparent 70%),
+    radial-gradient(40% 40% at 10% 85%, oklch(0.45 0.035 35 / 0.18), transparent 70%);
+  --gradient-premium: linear-gradient(135deg, oklch(0.23 0.03 10), oklch(0.35 0.04 15) 55%, oklch(0.45 0.05 355));
+  --gradient-liquid: linear-gradient(180deg, var(--taupe), var(--mauve));
+  --gradient-sheen: linear-gradient(120deg, oklch(1 0 0 / 0.55), oklch(1 0 0 / 0) 60%);
+  --shadow-soft: 0 1px 2px oklch(0.23 0.03 10 / 0.04), 0 12px 32px -12px oklch(0.23 0.03 10 / 0.18);
+  --shadow-glow: 0 20px 50px -20px oklch(0.63 0.06 355 / 0.55);
+
+  --sidebar: oklch(0.99 0.006 30 / 0.6);
+  --sidebar-foreground: var(--coffee);
+  --sidebar-primary: var(--coffee);
+  --sidebar-primary-foreground: var(--ivory);
+  --sidebar-accent: oklch(0.89 0.035 10 / 0.7);
+  --sidebar-accent-foreground: var(--coffee);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--mauve);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .font-display {
+    font-family: var(--font-serif);
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility bg-aurora {
+  background-color: var(--background);
+  background-image: var(--gradient-aurora);
+  background-attachment: fixed;
+}
+@utility bg-premium {
+  background-image: var(--gradient-premium);
+  color: var(--ivory);
+}
+@utility bg-liquid {
+  background-image: var(--gradient-liquid);
+}
+@utility glass {
+  background: var(--card);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid oklch(1 0 0 / 0.55);
+  box-shadow: var(--shadow-soft);
+}
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+@utility shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+@utility lift {
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-glow);
+  }
+}
+@utility fade-up {
+  animation: fade-up 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
