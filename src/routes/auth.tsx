@@ -99,14 +99,6 @@ function AuthPage() {
     }
   }
 
-  async function google() {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo: window.location.origin },
-    });
-    if (error) toast.error("No se ha podido iniciar sesión con Google.");
-  }
-
   return (
     <div className="bg-aurora grid min-h-screen lg:grid-cols-[1.1fr_1fr]">
       <div className="relative hidden overflow-hidden lg:block">
@@ -166,17 +158,6 @@ function AuthPage() {
                   {loading ? "Un momento…" : mode === "login" ? "Iniciar sesión" : mode === "signup" ? "Crear cuenta" : "Enviar enlace"}
                 </Button>
               </form>
-
-              {mode !== "forgot" && (
-                <>
-                  <div className="my-6 flex items-center gap-3 text-xs text-muted-foreground">
-                    <span className="h-px flex-1 bg-border" />o<span className="h-px flex-1 bg-border" />
-                  </div>
-                  <Button type="button" variant="outline" onClick={google} className="h-12 w-full rounded-full bg-card">
-                    Continuar con Google
-                  </Button>
-                </>
-              )}
 
               <p className="mt-8 text-center text-sm text-muted-foreground">
                 {mode === "login" ? (
