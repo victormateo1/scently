@@ -14,6 +14,10 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedPerfumesIndexRouteImport } from './routes/_authenticated/perfumes.index'
+import { Route as AuthenticatedPerfumesIdRouteImport } from './routes/_authenticated/perfumes.$id'
+import { Route as AuthenticatedPerfumesNewRouteImport } from './routes/_authenticated/perfumes.new'
+import { Route as AuthenticatedPerfumesEditIdRouteImport } from './routes/_authenticated/perfumes.edit.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -39,18 +43,49 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedPerfumesIndexRoute =
+  AuthenticatedPerfumesIndexRouteImport.update({
+    id: '/perfumes/',
+    path: '/perfumes/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPerfumesIdRoute = AuthenticatedPerfumesIdRouteImport.update({
+  id: '/perfumes/$id',
+  path: '/perfumes/$id',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPerfumesNewRoute =
+  AuthenticatedPerfumesNewRouteImport.update({
+    id: '/perfumes/new',
+    path: '/perfumes/new',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPerfumesEditIdRoute =
+  AuthenticatedPerfumesEditIdRouteImport.update({
+    id: '/perfumes/edit/$id',
+    path: '/perfumes/edit/$id',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/perfumes/$id': typeof AuthenticatedPerfumesIdRoute
+  '/perfumes/new': typeof AuthenticatedPerfumesNewRoute
+  '/perfumes/': typeof AuthenticatedPerfumesIndexRoute
+  '/perfumes/edit/$id': typeof AuthenticatedPerfumesEditIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/perfumes/$id': typeof AuthenticatedPerfumesIdRoute
+  '/perfumes/new': typeof AuthenticatedPerfumesNewRoute
+  '/perfumes': typeof AuthenticatedPerfumesIndexRoute
+  '/perfumes/edit/$id': typeof AuthenticatedPerfumesEditIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -59,12 +94,32 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/perfumes/$id': typeof AuthenticatedPerfumesIdRoute
+  '/_authenticated/perfumes/new': typeof AuthenticatedPerfumesNewRoute
+  '/_authenticated/perfumes/': typeof AuthenticatedPerfumesIndexRoute
+  '/_authenticated/perfumes/edit/$id': typeof AuthenticatedPerfumesEditIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/reset-password' | '/dashboard'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/dashboard'
+    | '/perfumes/$id'
+    | '/perfumes/new'
+    | '/perfumes/'
+    | '/perfumes/edit/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/reset-password' | '/dashboard'
+  to:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/dashboard'
+    | '/perfumes/$id'
+    | '/perfumes/new'
+    | '/perfumes'
+    | '/perfumes/edit/$id'
   id:
     | '__root__'
     | '/'
@@ -72,6 +127,10 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/_authenticated/dashboard'
+    | '/_authenticated/perfumes/$id'
+    | '/_authenticated/perfumes/new'
+    | '/_authenticated/perfumes/'
+    | '/_authenticated/perfumes/edit/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -118,15 +177,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/perfumes/': {
+      id: '/_authenticated/perfumes/'
+      path: '/perfumes'
+      fullPath: '/perfumes/'
+      preLoaderRoute: typeof AuthenticatedPerfumesIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/perfumes/$id': {
+      id: '/_authenticated/perfumes/$id'
+      path: '/perfumes/$id'
+      fullPath: '/perfumes/$id'
+      preLoaderRoute: typeof AuthenticatedPerfumesIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/perfumes/new': {
+      id: '/_authenticated/perfumes/new'
+      path: '/perfumes/new'
+      fullPath: '/perfumes/new'
+      preLoaderRoute: typeof AuthenticatedPerfumesNewRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/perfumes/edit/$id': {
+      id: '/_authenticated/perfumes/edit/$id'
+      path: '/perfumes/edit/$id'
+      fullPath: '/perfumes/edit/$id'
+      preLoaderRoute: typeof AuthenticatedPerfumesEditIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedPerfumesIdRoute: typeof AuthenticatedPerfumesIdRoute
+  AuthenticatedPerfumesNewRoute: typeof AuthenticatedPerfumesNewRoute
+  AuthenticatedPerfumesIndexRoute: typeof AuthenticatedPerfumesIndexRoute
+  AuthenticatedPerfumesEditIdRoute: typeof AuthenticatedPerfumesEditIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedPerfumesIdRoute: AuthenticatedPerfumesIdRoute,
+  AuthenticatedPerfumesNewRoute: AuthenticatedPerfumesNewRoute,
+  AuthenticatedPerfumesIndexRoute: AuthenticatedPerfumesIndexRoute,
+  AuthenticatedPerfumesEditIdRoute: AuthenticatedPerfumesEditIdRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =

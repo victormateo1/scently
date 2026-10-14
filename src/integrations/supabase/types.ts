@@ -88,6 +88,7 @@ export type Database = {
           seasons: string[]
           sillage: string | null
           size_ml: number
+          spray_ml: number
           status: string
           store: string | null
           top_notes: string[]
@@ -121,6 +122,7 @@ export type Database = {
           seasons?: string[]
           sillage?: string | null
           size_ml: number
+          spray_ml?: number
           status?: string
           store?: string | null
           top_notes?: string[]
@@ -154,6 +156,7 @@ export type Database = {
           seasons?: string[]
           sillage?: string | null
           size_ml?: number
+          spray_ml?: number
           status?: string
           store?: string | null
           top_notes?: string[]
@@ -251,6 +254,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      register_sprays: {
+        Args: { _count: number; _perfume_id: string }
+        Returns: number
+      }
       update_remaining: {
         Args: { _ml: number; _note?: string; _perfume_id: string }
         Returns: undefined

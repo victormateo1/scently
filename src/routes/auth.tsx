@@ -16,9 +16,9 @@ export const Route = createFileRoute("/auth")({
   validateSearch: search,
   head: () => ({
     meta: [
-      { title: "Iniciar sesión — Scently" },
+      { title: "Iniciar sesión" },
       { name: "description", content: "Accede a tu colección privada de perfumes en Scently." },
-      { property: "og:title", content: "Iniciar sesión — Scently" },
+      { property: "og:title", content: "Iniciar sesión" },
       { property: "og:description", content: "Accede a tu colección privada de perfumes." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

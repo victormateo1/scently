@@ -64,7 +64,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { title: "Scently — Tu colección de perfumes" },
+      { title: "Scently" },
       { name: "description", content: "Organiza tu colección de colonias y perfumes, controla el contenido de cada frasco y descubre qué fragancia usar." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

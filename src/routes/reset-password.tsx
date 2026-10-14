@@ -11,9 +11,9 @@ export const Route = createFileRoute("/reset-password")({
   ssr: false,
   head: () => ({
     meta: [
-      { title: "Nueva contraseña — Scently" },
+      { title: "Nueva contraseña" },
       { name: "description", content: "Establece una nueva contraseña para tu cuenta de Scently." },
-      { property: "og:title", content: "Nueva contraseña — Scently" },
+      { property: "og:title", content: "Nueva contraseña" },
       { property: "og:description", content: "Restablece el acceso a tu colección." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
