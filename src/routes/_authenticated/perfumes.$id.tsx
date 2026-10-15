@@ -16,7 +16,7 @@ import {
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/perfumes/$id")({
-  head: () => ({ meta: [{ title: "Perfume" }] }),
+  head: () => ({ meta: [{ title: "Perfume — Scently" }] }),
   component: Detail,
 });
 
@@ -56,7 +56,9 @@ function Detail() {
     return (
       <div className="space-y-3">
         <p className="text-muted-foreground">No se ha encontrado este perfume.</p>
-        <Button asChild variant="outline" className="rounded-full"><Link to="/perfumes">Volver a la colección</Link></Button>
+        <Button asChild variant="outline" className="rounded-full">
+          <Link to="/dashboard">Volver a la colección</Link>
+        </Button>
       </div>
     );
   }
@@ -120,8 +122,8 @@ function Detail() {
   return (
     <div className="fade-up space-y-6">
       <Link to="/dashboard" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground">
-  <ArrowLeft className="h-4 w-4" /> Colección
-</Link>
+        <ArrowLeft className="h-4 w-4" /> Colección
+      </Link>
 
       <div className="grid gap-6 md:grid-cols-[320px_1fr]">
         <PerfumePhoto path={p.photo_path} alt={`${p.brand} ${p.name}`} className="aspect-[4/5] w-full rounded-3xl" />
@@ -139,8 +141,10 @@ function Detail() {
               <Button type="button" variant="outline" size="icon" className="rounded-full" onClick={toggleFav} aria-label="Favorita">
                 <Heart className={cn("h-4 w-4", p.is_favorite && "fill-current text-rose-600")} />
               </Button>
-              <Button asChild variant="outline" className="rounded-full"><Link to="/dashboard">Volver a la colección</Link></Button>
-              <Link to="/perfumes/edit/$id" params={{ id: p.id }}><Pencil className="h-4 w-4" /></Link>
+              <Button asChild variant="outline" size="icon" className="rounded-full" aria-label="Editar">
+                <Link to="/perfumes/edit/$id" params={{ id: p.id }}>
+                  <Pencil className="h-4 w-4" />
+                </Link>
               </Button>
               <Button type="button" variant="outline" size="icon" className="rounded-full" onClick={remove} aria-label="Eliminar">
                 <Trash2 className="h-4 w-4" />
@@ -180,8 +184,12 @@ function Detail() {
             </p>
             {sprays > 0 && (
               <div className="mt-4 flex justify-center gap-2">
-                <Button type="button" variant="outline" className="rounded-full" onClick={() => setSprays(0)}>Borrar</Button>
-                <Button type="button" className="rounded-full" disabled={busy} onClick={saveSprays}>Guardar</Button>
+                <Button type="button" variant="outline" className="rounded-full" onClick={() => setSprays(0)}>
+                  Borrar
+                </Button>
+                <Button type="button" className="rounded-full" disabled={busy} onClick={saveSprays}>
+                  Guardar
+                </Button>
               </div>
             )}
           </div>
@@ -212,7 +220,9 @@ function Detail() {
             <h2 className="mb-2 font-display text-2xl">Compra</h2>
             <dl className="divide-y divide-border">
               <Row k="Precio">{fmtMoney(p.price, currency)}</Row>
-              <Row k="Precio por ml">{p.price != null ? fmtMoney(Number(p.price) / Number(p.size_ml), currency) : "—"}</Row>
+              <Row k="Precio por ml">
+                {p.price != null ? fmtMoney(Number(p.price) / Number(p.size_ml), currency) : "—"}
+              </Row>
               <Row k="Fecha">{fmtDate(p.purchase_date)}</Row>
               <Row k="Tienda">{p.store ?? "—"}</Row>
             </dl>
@@ -221,10 +231,22 @@ function Detail() {
 
           <section className="glass space-y-3 rounded-3xl p-6">
             <h2 className="font-display text-2xl">Ajustar cantidad</h2>
-            <p className="text-sm text-muted-foreground">Si has pesado el frasco o te has equivocado, fija los ml que quedan.</p>
+            <p className="text-sm text-muted-foreground">
+              Si has pesado el frasco o te has equivocado, fija los ml que quedan.
+            </p>
             <div className="flex gap-2">
-              <Input type="number" step="any" min="0" value={adjust} onChange={(e) => setAdjust(e.target.value)} placeholder="ml restantes" className="h-11 rounded-xl" />
-              <Button type="button" variant="outline" className="h-11 rounded-full" disabled={busy || !adjust} onClick={saveAdjust}>Ajustar</Button>
+              <Input
+                type="number"
+                step="any"
+                min="0"
+                value={adjust}
+                onChange={(e) => setAdjust(e.target.value)}
+                placeholder="ml restantes"
+                className="h-11 rounded-xl"
+              />
+              <Button type="button" variant="outline" className="h-11 rounded-full" disabled={busy || !adjust} onClick={saveAdjust}>
+                Ajustar
+              </Button>
             </div>
           </section>
         </div>
