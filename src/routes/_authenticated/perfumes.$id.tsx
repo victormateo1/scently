@@ -114,14 +114,14 @@ function Detail() {
     if (error) return void toast.error("No se ha podido eliminar.");
     await removePhoto(p.photo_path).catch(() => {});
     await invalidate();
-    navigate({ to: "/perfumes" });
+    navigate({ to: "/dashboard" });
   }
 
   return (
     <div className="fade-up space-y-6">
-      <Link to="/perfumes" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground">
-        <ArrowLeft className="h-4 w-4" /> Colección
-      </Link>
+      <Link to="/dashboard" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground">
+  <ArrowLeft className="h-4 w-4" /> Colección
+</Link>
 
       <div className="grid gap-6 md:grid-cols-[320px_1fr]">
         <PerfumePhoto path={p.photo_path} alt={`${p.brand} ${p.name}`} className="aspect-[4/5] w-full rounded-3xl" />
@@ -139,8 +139,8 @@ function Detail() {
               <Button type="button" variant="outline" size="icon" className="rounded-full" onClick={toggleFav} aria-label="Favorita">
                 <Heart className={cn("h-4 w-4", p.is_favorite && "fill-current text-rose-600")} />
               </Button>
-              <Button asChild variant="outline" size="icon" className="rounded-full" aria-label="Editar">
-                <Link to="/perfumes/edit/$id" params={{ id: p.id }}><Pencil className="h-4 w-4" /></Link>
+              <Button asChild variant="outline" className="rounded-full"><Link to="/dashboard">Volver a la colección</Link></Button>
+              <Link to="/perfumes/edit/$id" params={{ id: p.id }}><Pencil className="h-4 w-4" /></Link>
               </Button>
               <Button type="button" variant="outline" size="icon" className="rounded-full" onClick={remove} aria-label="Eliminar">
                 <Trash2 className="h-4 w-4" />
