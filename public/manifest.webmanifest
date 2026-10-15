@@ -1,9 +1,10 @@
 {
+  "id": "/",
   "name": "Scently",
   "short_name": "Scently",
   "description": "Tu colección de perfumes",
   "lang": "es",
-  "start_url": "/dashboard",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
